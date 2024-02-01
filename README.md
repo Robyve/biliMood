@@ -17,4 +17,5 @@
 
 #### 情绪分析
 1. 参照 https://blog.csdn.net/fuhao6363/article/details/128293350 取得APP_ID，API_KEY和SECRET_KEY。将它们填入`config.py`的对应位置。
-2. 设置`config.py`下的`MOOD_IN_FILE`为要分析的csv文件
+2. 设置`config.py`下的`MOOD_IN_FILE`为要分析的csv文件。
+3. 运行`mood.py`，分析结果会输出在`\output\mood`下，文件名为原文件名+_mood后缀。
