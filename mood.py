@@ -5,14 +5,12 @@ import pandas as pd
 from aip import AipNlp
 from tqdm import tqdm
 
-APP_ID = '41653772'
-API_KEY = 'I4vxnGp0o00NPFyOVDWNPuyI'
-SECRET_KEY = 'F1QlH03WcPsR3Ss9Bx0g9Y83yx2COFsM'
+import config
 
-indir = './output/bili/bili_2023-11-03-17-28-06_705162334.csv'
-outdir = f'./output/bili/bili_2023-11-03-17-28-06_705162334_mood.csv'
-
-client = AipNlp(APP_ID, API_KEY, SECRET_KEY)
+indir = config.MOOD_IN_FILE
+outdir = f"output/mood/{indir.split('/')[-1][:-4]}_mood.csv"
+print(outdir)
+client = AipNlp(config.AIPNLP_APP_ID, config.AIPNLP_API_KEY, config.AIPNLP_SECRET_KEY)
 
 
 def get_sentiments(text, i):
