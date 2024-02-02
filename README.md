@@ -1,34 +1,33 @@
-# 社交平台评论爬虫
+# Social Media Comment Scraper
 
-## 配置
-运行以下命令配置环境：
+## Setup
+Run the following command to set up the environment:
 ```shell
 pip install -r requirements.txt
 ```
+## Usage
 
-## 使用
+### Bilibili Comment Scraping
+1. Enter your bilibili.com cookie into `BLIL_COOKIE` in `config.py`.
+   - Log into your account on bilibili.com, press `F12`, click the `Network` tab, find `www.bilibili.com` (refresh the page if it's not there), find the `Cookie:` field on the right side, and copy it.
+   - The cookie might expire, in which case simply enter a new cookie.
+2. Find the video from which you want to scrape comments, and enter its BV number into `BLIL_BV` in `config.py`.
+   - The BV number can be found in the video URL: `https://www.bilibili.com/video/BV*******/...`.
+   - The BV number can be used with or without the leading BV letters.
+3. Set `BLIL_MAX_PAGE` in `config.py` to the total number of comment pages you want to scrape, or enter a very large number to scrape all comments, but the progress bar may not work properly in this case.
+4. Run `bili_getter.py`, the scraping result will be output in csv format under `output/bili`.
 
-#### Bilibili评论爬取
-1. 将bilibili.com的cookie填入`config.py`下的`BLIL_COOKIE`。
-   - 在bilibili.com登录b站账号，按`F12`，点击`网络`标签页，找到`www.bilibili.com`（如果没有就刷新一下网页），在右侧找到`Cookie:`项，复制即可。
-   - cookie可能会失效，重新填入新cookie即可。
-2. 找到你要爬取评论的视频，将视频BV号填入`config.py`下的`BLIL_BV`。
-   - BV号可以视频网址中找到：` https://www.bilibili.com/video/BV*******/... `。
-   - BV号无论是否包含开头的BV字母都可以使用。
-3. 设置`config.py`下的`BLIL_MAX_PAGE`为你想抓取的评论总页数，也可以填一个很大的数来抓取所有评论，但此时进度条可能不会正常工作。
-4. 运行`bili_getter.py`，抓取结果会以csv格式输出到`output/bili`下。
+### Douyin Comment Scraping
+1. Enter your douyin.com cookie into `DOUYIN_COOKIE` in `config.py`.
+   - Log into your account on douyin.com, press `F12`, click the `Network` tab, find `www.douyin.com` (refresh the page if it's not there), find the `Cookie:` field on the right side, and copy it.
+   - The cookie might expire, in which case simply enter a new cookie.
+2. Find the video from which you want to scrape comments, and enter its ID into `DOUYIN_VIDEO_ID` in `config.py`.
+   - The Douyin video ID can be found in the **details page** URL: `https://www.douyin.com/video/*******`.
+   - The video ID is not visible when browsing videos on the homepage, right-click and click `video details page` to navigate the details page.
+3. Set `DOUYIN_MAX_PAGE` in `config.py` to the total number of comment pages you want to scrape, or enter a very large number to scrape all comments, but the progress bar may not work properly in this case.
+4. Run `douyin_getter.py`, the scraping result will be output in csv format under `output/douyin`.
 
-#### 抖音评论爬取
-1. 将douyin.com的cookie填入`config.py`下的`DOUYIN_COOKIE`。
-   - 在douyin.com登录抖音账号，按`F12`，点击`网络`标签页，找到`www.douyin.com`（如果没有就刷新一下网页），在右侧找到`Cookie:`项，复制即可。
-   - cookie可能会失效，重新填入新cookie即可。
-2. 找到你要爬取评论的视频，将视频ID填入`config.py`下的`DOUYIN_VIDEO_ID`。
-   - 抖音视频ID可以视频**详情页**的网址中找到：` https://www.douyin.com/video/******* `。
-   - 抖音在首页刷视频模式下无法看到视频ID，右键，点击`视频详情页`即可跳转。
-3. 设置`config.py`下的`DOUYIN_MAX_PAGE`为你想抓取的评论总页数，也可以填一个很大的数来抓取所有评论，但此时进度条可能不会正常工作。
-4. 运行`douyin_getter.py`，抓取结果会以csv格式输出到`output/douyin`下。
-
-#### 情绪分析
-1. 情绪分析基于百度AI开放平台自然语言处理模型的情绪分析功能，参照 https://blog.csdn.net/fuhao6363/article/details/128293350 取得APP_ID，API_KEY和SECRET_KEY。将它们填入`config.py`的对应位置。
-2. 设置`config.py`下的`MOOD_IN_FILE`为要分析的csv文件。
-3. 运行`mood.py`，分析结果会输出在`\output\mood`下，文件名为原文件名+_mood后缀。
+### Sentiment Analysis
+1. Sentiment analysis is based on the sentiment analysis function of the natural language processing model from Baidu AI Open Platform. Refer to https://blog.csdn.net/fuhao6363/article/details/128293350 to get the APP_ID, API_KEY, and SECRET_KEY. Enter them into their respective places in `config.py`.
+2. Set `MOOD_IN_FILE` in `config.py` to the csv file you want to analyze.
+3. Run `mood.py`, the analysis result will be output under `output/mood`, with the original file name plus a _mood suffix.
