@@ -1,10 +1,7 @@
 # 社交平台评论爬虫
 
 ## 配置
-运行以下命令配置环境：
-```shell
-pip install -r requirements.txt
-```
+
 
 ## 使用
 

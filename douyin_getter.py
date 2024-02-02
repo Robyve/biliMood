@@ -8,7 +8,6 @@ import config
 import utils
 
 video_id = config.DOUYIN_VIDEO_ID
-MAX_PAGE = 20
 curr_time_str = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())
 outdir = f'./output/douyin/douyin_{curr_time_str}.csv'
 csv_header = ['作者', '内容', '时间', '点赞', '页码']
@@ -64,7 +63,7 @@ def main():
     df = pd.DataFrame(out_dict)
     df.to_csv(outdir, mode='a+', encoding='utf_8_sig', index=False, header=csv_header)
 
-    for page_num in tqdm(range(1, MAX_PAGE + 1)):
+    for page_num in tqdm(range(1, config.DOUYIN_MAX_PAGE + 1)):
         success = get_comments(page_num)
         if not success:
             return
